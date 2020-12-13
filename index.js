@@ -16,11 +16,13 @@ try {
 }
 
 function outputDockerTag() {
+  console.log(github.context.head_ref)
   if (github.context.head_ref) {
     core.setOutput("docker-tags", `pr-${github.context.event.number}`);
     return;
   }
   
+  console.log(github.context.ref.split('/'));
   const branch = github.context.ref.split('/').pop();
   if (['main', 'master'].includes(branch)) {
     core.setOutput("docker-tags", `lastest,${branch}`);
