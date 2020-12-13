@@ -15,11 +15,16 @@ try {
   core.setFailed(error.message);
 }
 
-fun outputDockerTag() {
+function outputDockerTag() {
   if (github.head_ref) {
-    core.setOutput("docker-tag", `pr-${github.event.number}`);
+    core.setOutput("docker-tags", `pr-${github.event.number}`);
+    return;
+  }
+  
+  const branch = github.ref.split('/').pop();
+  if (['main', 'master'].includes(branch)) {
+    core.setOutput("docker-tags", `lastest,${branch}`);
   } else {
-    const branch = github.ref.split('/').pop();
-    core.setOutput("docker-tag", `pr-${branch}`);
+    core.setOutput("docker-tags", branch);
   }
 }
