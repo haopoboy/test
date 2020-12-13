@@ -8,12 +8,12 @@ on:
 jobs:
   hello:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to write outputs
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
-        id: hello
+      - name: Write outputs
+        id: more-outputs
         uses: ./
         with:
           who-to-greet: 'Mona the Octocat'
@@ -21,5 +21,5 @@ jobs:
       - name: Get the output time
         run: |
           echo "The time was ${{ steps.hello.outputs.time }}"
-          echo "The docker tags was ${{ steps.hello.outputs.docker-tags }}"
+          echo "The docker tags were ${{ steps.hello.more-outputs.docker-tags }}"
 
