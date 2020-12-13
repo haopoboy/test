@@ -7,9 +7,19 @@ try {
   console.log(`Hello ${nameToGreet}!`);
   const time = (new Date()).toTimeString();
   core.setOutput("time", time);
+  outputDockerTag();
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
+}
+
+fun outputDockerTag() {
+  if (github.head_ref) {
+    core.setOutput("docker-tag", `pr-${github.event.number}`);
+  } else {
+    const branch = github.ref.split('/').pop();
+    core.setOutput("docker-tag", `pr-${branch}`);
+  }
 }
