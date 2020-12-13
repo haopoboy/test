@@ -16,6 +16,8 @@ try {
 }
 
 function outputDockerTag() {
+  const context = JSON.stringify(github.context, undefined, 2);
+  console.log(`context: ${context}`);
   if (github.head_ref) {
     core.setOutput("docker-tags", `pr-${github.event.number}`);
     return;
