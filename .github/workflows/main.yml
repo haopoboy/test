@@ -20,6 +20,6 @@ jobs:
       # Use the output from the `hello` step
       - name: Get the output time
         run: |
-          echo "The time was ${{ steps.hello.more.outputs.time }}"
-          echo "The docker tags were ${{ steps.hello.more.outputs.docker-tags }}"
+          echo "The time was ${{ steps.more.outputs.time }}"
+          echo "The docker tags were ${{ steps.more.outputs.docker-tags }}"
 
