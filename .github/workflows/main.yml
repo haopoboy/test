@@ -13,13 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Write outputs
-        id: more-outputs
+        id: more
         uses: ./
         with:
           who-to-greet: 'Mona the Octocat'
       # Use the output from the `hello` step
       - name: Get the output time
         run: |
-          echo "The time was ${{ steps.hello.more-outputs.time }}"
-          echo "The docker tags were ${{ steps.hello.more-outputs.docker-tags }}"
+          echo "The time was ${{ steps.hello.more.outputs.time }}"
+          echo "The docker tags were ${{ steps.hello.more.outputs.docker-tags }}"
 
